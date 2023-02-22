@@ -1,0 +1,49 @@
+services:
+    gorgo_import_debug.command.export:
+        class: 'Gorgo\Bundle\ImportDebugBundle\Command\ExportCommand'
+        arguments:
+            - '@oro_importexport.handler.export'
+            - '@oro_importexport.file.file_manager'
+        tags:
+            - { name: console.command, command: gorgo:debug:export }
+
+    gorgo_import_debug.command.export_template:
+        class: 'Gorgo\Bundle\ImportDebugBundle\Command\ExportTemplateCommand'
+        arguments:
+            - '@oro_importexport.handler.export'
+            - '@oro_importexport.file.file_manager'
+        tags:
+            - { name: console.command, command: gorgo:debug:export:template }
+
+    gorgo_import_debug.command.dump_processors:
+        class: 'Gorgo\Bundle\ImportDebugBundle\Command\DumpProcessorsCommand'
+        arguments:
+            - '@oro_importexport.processor.registry'
+        tags:
+            - { name: console.command, command: gorgo:debug:import:dump-processors  }
+
+    gorgo_import_debug.command.dump_tempalte_headers:
+        class: 'Gorgo\Bundle\ImportDebugBundle\Command\DumpExportHeadersCommand'
+        arguments:
+            - '@oro_importexport.handler.export'
+            - '@oro_importexport.file.file_manager'
+        tags:
+            - { name: console.command, command: gorgo:debug:export:dump-headers  }
+
+    gorgo_import_debug.command.import:
+        class: 'Gorgo\Bundle\ImportDebugBundle\Command\ImportCommand'
+        arguments:
+            - '@oro_importexport.handler.import'
+            - '@oro_importexport.file.file_manager'
+        tags:
+            - { name: console.command, command: gorgo:debug:import  }
+
+    gorgo_import_debug.command.entity_config:
+        class: 'Gorgo\Bundle\ImportDebugBundle\Command\DebugImportExportEntityConfigCommand'
+        arguments:
+            - '@oro_entity.helper.field_helper'
+            - '@oro_entity_extend.extend.field_type_helper'
+            - '@oro_entity_extend.configuration_provider'
+            - '@oro_entity.entity_field_provider'
+        tags:
+            - { name: console.command, command: gorgo:debug:import:entity-config  }
